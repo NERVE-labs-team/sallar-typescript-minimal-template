@@ -3,11 +3,15 @@
     "target": "es6",
     "module": "nodenext",
     "outDir": "../public",
-    "rootDir": "./src",
     "strict": true,
     "lib": ["DOM", "ES6"],
     "types": [],
     "moduleResolution": "nodenext",
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "paths": {
+      "@shared/*": ["../shared/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

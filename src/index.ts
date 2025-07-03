@@ -1,5 +1,8 @@
-import { InstanceManager } from '@sallar-network/server';
+import { InstanceManager, MinimalEventPayload } from '@sallar-network/server';
 import * as dotenv from 'dotenv';
+import { GreetingFromServer, GreetingFromClient } from 'shared/greetings';
+
+const ServerNick = 'Bob';
 
 (async () => {
   dotenv.config();
@@ -12,11 +15,16 @@ import * as dotenv from 'dotenv';
     program_token: process.env.PROGRAM_TOKEN,
   });
 
-  manager.on('hello', ({ worker_id }) => {
-    console.log(`Hello from worker ${ worker_id }`);
+  manager.on('hello', (greetings: GreetingFromClient & MinimalEventPayload) => {
+    console.log(
+      `Client ${greetings.client_nick} said hello to ${ServerNick} too`
+    );
   });
 
   await manager.launch((_, manager) => {
-    manager.emit('say-hello', null);
+    console.log(`Time for ${ServerNick} to say hello to the new client`);
+
+    const greetings: GreetingFromServer = { server_nick: ServerNick };
+    manager.emit('say-hello', greetings);
   });
 })();
