@@ -1,4 +1,7 @@
-import { InstanceManager, MinimalEventPayload } from '@sallar-network/server';
+import {
+  InstanceManager,
+  ProgramObject,
+} from '@sallar-network/server';
 import * as dotenv from 'dotenv';
 import { GreetingFromServer, GreetingFromClient } from 'shared/greetings';
 
@@ -15,7 +18,7 @@ const ServerNick = 'Bob';
     program_token: process.env.PROGRAM_TOKEN,
   });
 
-  manager.on('hello', (greetings: GreetingFromClient & MinimalEventPayload) => {
+  manager.on('hello', (greetings: ProgramObject<GreetingFromClient>) => {
     console.log(
       `Client ${greetings.client_nick} said hello to ${ServerNick} too`
     );
