@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sallar-network/client": "^1.0.1",
+    "@sallar-network/client": "^1.0.2",
     "socket.io-client": "^4.8.1",
     "typescript": "^5.8.3"
   },
