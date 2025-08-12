@@ -11,6 +11,11 @@ program.on(
   async (greetings_from_server: GreetingFromServer, manager) => {
     await sleep(5000);
 
+    const msg = document.getElementById('msg');
+
+    if (msg)
+      msg.textContent = `Server ${greetings_from_server.server_nick} said hello to ${program.worker_id} time ${greetings_from_server.count}. Time to reply...`;
+
     console.log(
       `Server ${greetings_from_server.server_nick} said hello to ${program.worker_id} time ${greetings_from_server.count}. Time to reply...`
     );
